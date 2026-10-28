@@ -1,0 +1,182 @@
+/* ========================================
+   GCARE - MAP STYLES
+   ======================================== */
+
+/* ---------- Map Container ---------- */
+#map {
+  position: absolute;
+  inset: 0;
+  background: var(--panel);
+}
+
+/* ---------- Location and Status Chips ---------- */
+.chips {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  display: flex;
+  gap: 14px;
+  z-index: 1000; /* Above Leaflet panes */
+  flex-wrap: wrap;
+}
+
+/* Chip Appearance */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 36px;
+  padding: 0 14px 0 12px;
+  border: 0;
+  border-radius: 999px;
+  font: 500 14px "Inter", sans-serif;
+  color: #fff;
+
+  background: linear-gradient(
+    90deg,
+    var(--gold-bright),
+    #a98a1a 70%,
+    #8a6f14
+  );
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .35);
+  cursor: default;
+}
+
+/* Chip Icons */
+.chip svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+/* Clickable Chips */
+button.chip {
+  cursor: pointer;
+}
+
+/* Keyboard Focus for Clickable Chips */
+button.chip:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ---------- Live Status Animation ---------- */
+.live-icon circle.pulse {
+  animation: ping 1.8s ease-out infinite;
+  transform-origin: center;
+}
+
+@keyframes ping {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .2;
+  }
+}
+
+/* Offline Status */
+.chip.offline {
+  background: linear-gradient(90deg, #9a9a9a, #5d5d5d);
+}
+
+/* ---------- Map Zoom Controls ---------- */
+.leaflet-control-zoom {
+  border: 0 !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .3) !important;
+}
+
+/* ---------- Community Incident Markers ---------- */
+.gc-pin {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  border: 3px solid #fff;
+
+  box-shadow:
+    0 0 0 4px rgba(253, 208, 47, .35),
+    0 2px 6px rgba(0, 0, 0, .4);
+}
+
+/* Alert Marker */
+.gc-pin.alert {
+  background: #e53935;
+
+  box-shadow:
+    0 0 0 4px rgba(229, 57, 53, .3),
+    0 2px 6px rgba(0, 0, 0, .4);
+}
+
+/* ---------- Locate Button ---------- */
+.locate-btn {
+  position: absolute;
+  right: 24px;
+  bottom: 110px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+
+  background: linear-gradient(
+    135deg,
+    var(--gold-bright),
+    #a98a1a
+  );
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .4);
+  cursor: pointer;
+}
+
+/* Locate Button Icon */
+.locate-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Locate Button Keyboard Focus */
+.locate-btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Locate Button Loading State */
+.locate-btn.loading {
+  opacity: .6;
+  pointer-events: none;
+}
+
+/* ---------- Current User Location Marker ---------- */
+.gc-me {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2196f3;
+  border: 3px solid #fff;
+
+  box-shadow:
+    0 0 0 4px rgba(33, 150, 243, .35),
+    0 2px 6px rgba(0, 0, 0, .4);
+}
+
+/* ---------- Responsive Map Styles ---------- */
+@media (max-width: 640px) {
+  .chips {
+    top: 14px;
+    left: 14px;
+    gap: 8px;
+  }
+}
+
+/* ---------- Accessibility: Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .live-icon circle.pulse {
+    animation: none;
+  }
+}
