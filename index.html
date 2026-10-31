@@ -12,6 +12,8 @@
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/map.css">
+<link rel="stylesheet" href="css/feed.css">
+<link rel="stylesheet" href="css/report.css">
 
 </head>
 <body>
@@ -27,10 +29,13 @@
 
 <main>
   <!-- FEED SECTION -->
-  <section class="view" id="feedView" hidden>
-    <h1>Community Feed</h1>
-    <p>Stay updated with what's happening in your community.</p>
+  <section class="view feed-view" id="feedView" aria-label="Community feed" hidden>
+    <h1 class="sr-only">Community Feed</h1>
+    <div class="feed-grid" id="feedGrid"></div>
   </section>
+
+  <!-- NEWS DETAILS SECTION -->
+  <section class="view news-details-view" id="newsDetailsView" aria-label="News details" hidden></section>
 
   <!-- MAP SECTION -->
   <section class="view panel" id="mapView" aria-label="Community map">
@@ -49,9 +54,62 @@
   </section>
 
   <!-- REPORT SECTION -->
-  <section class="view" id="reportView" hidden>
-    <h1>Report a Concern</h1>
-    <p>Report a problem or request help in your community.</p>
+  <section class="view report-view" id="reportView" aria-label="Report community news" hidden>
+    <div class="report-header">
+      <p class="report-eyebrow">COMMUNITY REPORT</p>
+      <h1>Report News</h1>
+      <p>Share an important update, concern, or event with the GCare community.</p>
+    </div>
+
+    <form class="report-form" id="reportForm">
+      <div class="report-form-grid">
+        <label>
+          News title
+          <input type="text" name="title" maxlength="90" placeholder="e.g. Road Closure Advisory" required>
+        </label>
+
+        <label>
+          Category
+          <select name="category" required>
+            <option value="">Select a category</option>
+            <option>WEATHER UPDATE</option>
+            <option>COMMUNITY NEWS</option>
+            <option>SAFETY TIPS</option>
+            <option>LOCAL UPDATE</option>
+            <option>VOLUNTEER NEWS</option>
+            <option>GCARE REMINDER</option>
+          </select>
+        </label>
+
+        <label>
+          Location
+          <input type="text" name="location" maxlength="100" placeholder="e.g. Golden Country Homes" required>
+        </label>
+
+        <label>
+          Reported by
+          <input type="text" name="source" maxlength="80" placeholder="Your name or group" required>
+        </label>
+      </div>
+
+      <label>
+        Short summary
+        <textarea name="body" maxlength="220" rows="3" placeholder="Write a short summary for the feed card." required></textarea>
+      </label>
+
+      <label>
+        Full details
+        <textarea name="details" maxlength="1200" rows="6" placeholder="Explain what happened, when, and what the community should know." required></textarea>
+      </label>
+
+      <label>
+        Photo <span class="report-optional">(optional)</span>
+        <input type="file" name="image" accept="image/*">
+      </label>
+
+      <p class="report-status" id="reportStatus" role="status" aria-live="polite"></p>
+      <button class="report-submit" type="submit">Publish to Community Feed</button>
+    </form>
   </section>
 
   <!-- VOLUNTEER SECTION -->
@@ -98,6 +156,8 @@
 <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.20/leaflet-maplibre-gl.js"></script>
 <script src="js/script.js"></script>
+<script src="js/feed.js"></script>
+<script src="js/report.js"></script>
 <script src="js/map.js"></script>
 </body>
 </html>

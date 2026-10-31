@@ -4,6 +4,7 @@ const tabs = document.querySelectorAll(".tab");
 
 const views = {
   feed: document.getElementById("feedView"),
+  newsDetails: document.getElementById("newsDetailsView"),
   map: document.getElementById("mapView"),
   report: document.getElementById("reportView"),
   volunteer: document.getElementById("volunteerView"),
