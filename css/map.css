@@ -9,19 +9,16 @@
   background: var(--panel);
 }
 
-/* ---------- Location and Status Chips ---------- */
-.chips {
+/* ---------- Community Location ---------- */
+.gch-area {
   position: absolute;
   top: 22px;
   left: 24px;
-  display: flex;
-  gap: 14px;
-  z-index: 1000; /* Above Leaflet panes */
-  flex-wrap: wrap;
+  z-index: 1000;
 }
 
-/* Chip Appearance */
-.chip {
+/* Location Button */
+.gch-area .chip {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -40,25 +37,30 @@
   );
 
   box-shadow: 0 3px 6px rgba(0, 0, 0, .35);
-  cursor: default;
-}
-
-/* Chip Icons */
-.chip svg {
-  width: 18px;
-  height: 18px;
-  flex: none;
-}
-
-/* Clickable Chips */
-button.chip {
   cursor: pointer;
 }
 
-/* Keyboard Focus for Clickable Chips */
-button.chip:focus-visible {
+/* Transparent PNG */
+.gch-area .chip img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Keyboard Focus */
+.gch-area .chip:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 2px;
+}
+
+/* Responsive Position */
+@media (max-width: 640px) {
+  .gch-area {
+    top: 14px;
+    left: 14px;
+  }
 }
 
 /* ---------- Live Status Animation ---------- */
@@ -113,42 +115,49 @@ button.chip:focus-visible {
 /* ---------- Locate Button ---------- */
 .locate-btn {
   position: absolute;
-  right: 24px;
-  bottom: 110px;
+  right: 6px;
+  bottom: 95px;
   z-index: 1000;
-  width: 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border: 0;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  border: none;
   border-radius: 50%;
-  color: #fff;
 
-  background: linear-gradient(
-    135deg,
-    var(--gold-bright),
-    #a98a1a
-  );
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
 
-  box-shadow: 0 3px 8px rgba(0, 0, 0, .4);
   cursor: pointer;
 }
 
-/* Locate Button Icon */
-.locate-btn svg {
+/* Current Location Icon */
+.locate-btn img {
+  display: block;
   width: 24px;
   height: 24px;
+  object-fit: contain;
 }
 
-/* Locate Button Keyboard Focus */
+/* Hover Effect */
+.locate-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Keyboard Focus */
 .locate-btn:focus-visible {
-  outline: 3px solid #fff;
+  outline: 2px solid var(--gold-bright);
   outline-offset: 2px;
 }
 
-/* Locate Button Loading State */
+/* Loading State */
 .locate-btn.loading {
-  opacity: .6;
+  opacity: 0.6;
   pointer-events: none;
 }
 
@@ -180,3 +189,4 @@ button.chip:focus-visible {
     animation: none;
   }
 }
+

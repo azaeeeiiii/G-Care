@@ -1,4 +1,3 @@
-/* ====== Config: edit these ====== */
 
 const AREA = {
   name: "Golden Country Homes",
@@ -6,7 +5,9 @@ const AREA = {
   zoom: 16
 };
 
-// Sample data. Replace with your backend / Firebase / Supabase feed.
+const REPORTS = [];
+
+/* Sample data. Replace pa rin based on reports data.
 const REPORTS = [
   {
     lat: 14.0645,
@@ -23,6 +24,8 @@ const REPORTS = [
     note: "Volunteer requested."
   }
 ];
+*/
+
 
 
 /* ====== Map ====== */
@@ -84,13 +87,11 @@ REPORTS.forEach(r => {
     .bindPopup(`<b>${r.title}</b><br>${r.note}`);
 });
 
+/* ====== GCH Area Location ====== */
 
-/* ====== Location and Status Chips ====== */
-
-// Display the community name
 document.getElementById("locationName").textContent = AREA.name;
 
-// Return to the community's location when clicked
+// Return to GCH'S location when clicked
 document.getElementById("locationChip").addEventListener("click", () => {
   map.flyTo(AREA.center, AREA.zoom);
 });
@@ -98,11 +99,16 @@ document.getElementById("locationChip").addEventListener("click", () => {
 // Update the connection status
 function setStatus(online) {
   const chip = document.getElementById("statusChip");
+  const statusText = document.getElementById("statusText");
+
+  // Stop if the status elements do not exist
+  if (!chip || !statusText) {
+    return;
+  }
 
   chip.classList.toggle("offline", !online);
 
-  document.getElementById("statusText").textContent =
-    online ? "Active" : "Offline";
+  statusText.textContent = online ? "Active" : "Offline";
 }
 
 // Check the browser's current connection
@@ -113,12 +119,9 @@ addEventListener("online", () => setStatus(true));
 addEventListener("offline", () => setStatus(false));
 
 
-/* ====== Keep the Map Sized Correctly ====== */
-
 addEventListener("resize", () => {
   map.invalidateSize();
 });
-
 
 /* ====== Use My Current Location ====== */
 
@@ -128,12 +131,18 @@ let meCircle = null;
 const locateBtn = document.getElementById("locateBtn");
 
 locateBtn.addEventListener("click", () => {
+  if (!navigator.geolocation) {
+    alert("Your browser does not support location detection.");
+    return;
+  }
+
   locateBtn.classList.add("loading");
 
   map.locate({
     setView: true,
     maxZoom: 17,
-    enableHighAccuracy: true
+    enableHighAccuracy: true,
+    timeout: 15000
   });
 });
 
@@ -141,11 +150,14 @@ locateBtn.addEventListener("click", () => {
 map.on("locationfound", (e) => {
   locateBtn.classList.remove("loading");
 
-  // Remove the previous location marker and circle
-  if (meMarker) map.removeLayer(meMarker);
-  if (meCircle) map.removeLayer(meCircle);
+  if (meMarker) {
+    map.removeLayer(meMarker);
+  }
 
-  // Add a marker for the user's current location
+  if (meCircle) {
+    map.removeLayer(meCircle);
+  }
+
   meMarker = L.marker(e.latlng, {
     icon: L.divIcon({
       className: "",
@@ -155,10 +167,9 @@ map.on("locationfound", (e) => {
     })
   })
     .addTo(map)
-    .bindPopup("You are here")
+    .bindPopup("You are here!")
     .openPopup();
 
-  // Show the estimated accuracy of the location
   meCircle = L.circle(e.latlng, {
     radius: e.accuracy,
     color: "#2196f3",
@@ -171,9 +182,15 @@ map.on("locationfound", (e) => {
 map.on("locationerror", (e) => {
   locateBtn.classList.remove("loading");
 
-  alert(
-    e.code === 1
-      ? "Location access was denied. Allow it in your browser's site settings and try again."
-      : "Couldn't get your location. Check that GPS or Wi-Fi is on and try again."
-  );
+  if (e.code === 1) {
+    alert("Location access was denied. Please allow location access in your browser settings.");
+  } else if (e.code === 2) {
+    alert("Your current location is unavailable. Check your device's location services.");
+  } else if (e.code === 3) {
+    alert("The location request timed out. Please try again.");
+  } else {
+    alert("Unable to get your location: " + e.message);
+  }
+
+  console.error("Location error:", e.message);
 });

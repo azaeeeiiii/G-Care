@@ -164,10 +164,10 @@ main {
 }
 
 /* Navigation Icons */
-.tab svg {
+.tab img {
   width: 46px;
   height: 46px;
-  fill: #fff;
+  object-fit: contain;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .3));
 }
 
@@ -186,6 +186,10 @@ main {
   outline: 2px solid #fff;
   outline-offset: 4px;
   border-radius: 8px;
+}
+
+#mapView {
+  position: relative;
 }
 
 /* ---------- Responsive Website Layout ---------- */
@@ -211,10 +215,11 @@ main {
   }
 
   /* Bottom Navigation */
-  .tab svg {
-    width: 36px;
-    height: 36px;
-  }
+  
+  .tab img {
+  width: 36px;
+  height: 36px;
+}
 
   .tab {
     font-size: 12px;

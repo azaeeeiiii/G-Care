@@ -20,8 +20,8 @@
   <a class="logo" href="#">GCare</a>
   <nav class="topnav" aria-label="Main">
     <a href="#">HOME</a>
-    <a href="#">About</a>
-    <a href="#">Contact us</a>
+    <a href="#">ABOUT</a>
+    <a href="#">CONTACT US</a>
   </nav>
 </header>
 
@@ -36,28 +36,15 @@
   <section class="view panel" id="mapView" aria-label="Community map">
     <div id="map"></div>
 
-    <div class="chips">
+    <div class="gch-area">
       <button class="chip" id="locationChip" type="button" title="Recenter map">
-        <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-          <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/>
-        </svg>
+        <img src="images/golden_country_location.png" alt="">
         <span id="locationName">Golden Country Homes</span>
       </button>
-
-      <div class="chip" id="statusChip" role="status">
-        <svg class="live-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-          <circle class="pulse" cx="12" cy="12" r="2.2" fill="#fff" stroke="none"/>
-          <path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.7 5.7a9 9 0 0 0 0 12.6M18.3 5.7a9 9 0 0 1 0 12.6"/>
-        </svg>
-        <span id="statusText">Active</span>
-      </div>
     </div>
 
     <button class="locate-btn" id="locateBtn" type="button" aria-label="Use my current location">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="4"/>
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
-      </svg>
+      <img src="images/current_location.png" alt="Current Location">
     </button>
   </section>
 
@@ -82,44 +69,27 @@
 
 <nav class="bottomnav" aria-label="App sections">
   <button class="tab" data-view="feed">
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <rect x="4" y="9" width="40" height="7" rx="3.5"/>
-      <rect x="4" y="20.5" width="40" height="7" rx="3.5"/>
-      <rect x="4" y="32" width="40" height="7" rx="3.5"/>
-    </svg>
+    <img src="images/feed.png" alt="Feed">
     Feed
   </button>
 
   <button class="tab" data-view="map" aria-current="page">
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <path d="M6 6h9l-4 36H6zM19 6h8l8 10v-4l10 8v22L33 36v6H19z" opacity=".95"/>
-    </svg>
+    <img src="images/map.png" alt="Map"> 
     Map
   </button>
 
   <button class="tab" data-view="report">
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <circle cx="24" cy="24" r="22"/>
-      <rect x="21.5" y="11" width="5" height="16" rx="2.5" fill="#b8961c"/>
-      <circle cx="24" cy="34" r="3" fill="#b8961c"/>
-    </svg>
+    <img src="images/report.png" alt="Report">
     Report
   </button>
 
   <button class="tab" data-view="volunteer">
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <path d="M17 6a2.5 2.5 0 0 1 5 0v12h1V4a2.5 2.5 0 0 1 5 0v14h1V6a2.5 2.5 0 0 1 5 0v18l3-5a2.5 2.5 0 0 1 4 3l-6 14c-2 5-5 7-9 7h-5c-5 0-8-3-10-7l-5-9a2.5 2.5 0 0 1 4-3l3 4z"/>
-      <path d="M26 40c-4-3-6-5-6-7.5a3.2 3.2 0 0 1 6-1.5 3.2 3.2 0 0 1 6 1.5c0 2.500-2 4.500-6 7.500z" fill="#b8961c"/>
-    </svg>
+    <img src="images/volunteer.png" alt="Volunteer">
     Volunteer
   </button>
 
   <button class="tab" data-view="profile">
-    <svg viewBox="0 0 48 48" aria-hidden="true">
-      <circle cx="24" cy="24" r="22"/>
-      <circle cx="24" cy="19" r="6" fill="none" stroke="#c9a21d" stroke-width="3.5"/>
-      <path d="M11 38c3-7 8-9 13-9s10 2 13 9" fill="none" stroke="#c9a21d" stroke-width="3.5" stroke-linecap="round"/>
-    </svg>
+    <img src="images/profile.png" alt="Profile">
     Profile
   </button>
 </nav>
@@ -127,10 +97,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.20/leaflet-maplibre-gl.js"></script>
-<!-- Website navigation -->
 <script src="js/script.js"></script>
-
-<!-- Map functions -->
 <script src="js/map.js"></script>
 </body>
 </html>
